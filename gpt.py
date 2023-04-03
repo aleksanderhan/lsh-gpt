@@ -38,7 +38,7 @@ decode = lambda l: ''.join([itos[i] for i in l]) # decoder: take a list of integ
 
 
 
-enc = tiktoken.get_encoding("gpt3")
+enc = tiktoken.get_encoding("cl100k_base")
 vocab_size = enc.n_vocab
 encode = lambda s: enc.encode(s, allowed_special={"<|endoftext|>"})
 decode = lambda l: enc.decode(l)
