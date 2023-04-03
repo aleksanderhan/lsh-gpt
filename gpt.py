@@ -111,7 +111,7 @@ class LSHMultiHeadAttention(nn.Module):
 
     def __init__(self, num_heads, head_size):
         super().__init__()
-        self.heads = nn.ModuleList([LSHAttention(head_size) for _ in range(num_heads)])
+        self.heads = nn.ModuleList([LSHAttention(head_size, dropout=dropout) for _ in range(num_heads)])
         self.proj = nn.Linear(head_size * num_heads, n_embd)
         self.dropout = nn.Dropout(dropout)
 
