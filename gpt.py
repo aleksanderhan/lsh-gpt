@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 from torch.nn import functional as F
 import tiktoken
-from reformer_pytorch import LSHAttention
+from reformer_pytorch import LSHAttention, LSHSelfAttention
 
 
 # hyperparameters
@@ -112,7 +112,15 @@ class LSHMultiHeadAttention(nn.Module):
 
     def __init__(self, num_heads, head_size):
         super().__init__()
-        self.heads = nn.ModuleList([LSHAttention(bucket_size=bucket_size, dropout=dropout) for _ in range(num_heads)])
+        self.heads = nn.ModuleList([
+            LSHSelfAttention(
+                dim = 128,
+                heads = head_size,
+                bucket_size = bucket_size,
+                n_hashes = 8,
+                causal = False
+            ) for _ in range(num_heads)
+        ])
         self.proj = nn.Linear(head_size * num_heads, n_embd)
         self.dropout = nn.Dropout(dropout)
 
