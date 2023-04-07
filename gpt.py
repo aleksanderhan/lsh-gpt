@@ -6,19 +6,19 @@ from reformer_pytorch import LSHAttention, LSHSelfAttention
 
 
 # hyperparameters
-batch_size = 32 # how many independent sequences will we process in parallel?
+batch_size = 16 # how many independent sequences will we process in parallel?
 block_size = 256 # what is the maximum context length for predictions?
 max_iters = 5000
 eval_interval = 500
 learning_rate = 3e-4
-device = 'cuda' #'cuda' if torch.cuda.is_available() else 'cpu'
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
 print(device)
 eval_iters = 200
-n_embd = 256
-n_head = 5
-n_layer = 5
+n_embd = 128
+n_head = 4
+n_layer = 4
 dropout = 0.2
-bucket_size = 128
+bucket_size = 64
 # ------------
 
 torch.manual_seed(1337)
