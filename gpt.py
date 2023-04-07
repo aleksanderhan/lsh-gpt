@@ -114,7 +114,7 @@ class LSHMultiHeadAttention(nn.Module):
         super().__init__()
         self.heads = nn.ModuleList([
             LSHSelfAttention(
-                dim = 128,
+                dim = head_size*16,
                 heads = head_size,
                 bucket_size = bucket_size,
                 n_hashes = 8,
